@@ -1,7 +1,6 @@
 package rc.bored;
 
 import java.util.*;
-import java.io.*;
 import java.text.*;
 
 public class ConversionHelper {
@@ -12,6 +11,7 @@ public class ConversionHelper {
 		final String lb = "lb";
 		final String gal = "gal";
 		final String qt = "qt";
+		final String gram = "gram";
 		final String outUnit = csvData.get(1)[3];
 		diagPrint(("Out Unit: " + outUnit), diagSwitch);
 		//final boolean baseIngredientExists = FormatVerifier.baseIngredientExists(csvData);
@@ -65,6 +65,10 @@ public class ConversionHelper {
 					values.set(i, lbsToOz(values.get(i)));
 					inUnits.set(i, oz);
 				}
+				else if(inUnits.get(i).equalsIgnoreCase(gram)) {
+					values.set(i, gramToOz(values.get(i)));
+					inUnits.set(i, oz);
+				}
 			}
 			diagPrint ("Values and inUnits converted to oz", diagSwitch);
 			diagPrintArr("values: ",values,diagSwitch);
@@ -77,10 +81,30 @@ public class ConversionHelper {
 					values.set(i, ozToLbs(values.get(i)));
 					inUnits.set(i, lb);
 				}
+				else if(inUnits.get(i).equalsIgnoreCase(gram)) {
+					values.set(i, ozToLbs(gramToOz(values.get(i))));
+					inUnits.set(i, lb);
+				}
 			}
 			diagPrint("Values and inUnits converted to lb", diagSwitch);
 			diagPrintArr("values: ",values,diagSwitch);
 			diagPrintArr("inUnits: ",inUnits,diagSwitch);
+		}
+		//Convert to grams if necessary
+		if(outUnit.equalsIgnoreCase(gram)) {
+			for(int i = 0; i < values.size(); i++) {
+				if(inUnits.get(i).contentEquals(oz)) {
+					values.set(i, ozToGram(values.get(i)));
+					inUnits.set(i, gram);
+				}
+				else if(inUnits.get(i).contentEquals(lb)) {
+					values.set(i, lbsToOz(ozToGram(values.get(i))));
+					inUnits.set(i, gram);
+				}
+				diagPrint("Values and inUnits converted to gram", diagSwitch);
+				diagPrintArr("values: ",values,diagSwitch);
+				diagPrintArr("inUnits: ",inUnits,diagSwitch);
+			}
 		}
 		//Handle the base ingredient stuff - This code has been disabled until further notice. There are shuffle issues.
 		/*
@@ -176,6 +200,12 @@ public class ConversionHelper {
 	public static double galToOz(double num) {
 		return num*128;
 	}//End of galToOz()
+	public static double ozToGram(double num) {
+		return num*28.35;
+	}//End of ozToGram
+	public static double gramToOz(double num) {
+		return num/28.35;
+	}//End of gramToOz
 	public static double ratioFactory(double num, double base) {
 		return num/base;
 	}//End of ratioFactory()

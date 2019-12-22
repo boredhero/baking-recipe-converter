@@ -1,17 +1,19 @@
+
 //This may be a thing, idk.
 package rc.bored;
 
 import java.util.*;
-import java.io.*;
 
-import rc.bored.FormatVerifier;
 import rc.bored.ConversionHelper;
+import rc.bored.FormatVerifier;
+
+import java.io.*;
 
 public class RecipeConverter{
 public static void main(String[] args){
   //Meta
   final String name = "Baking Recipe Converter";
-  final String version = "1.0.0";
+  final String version = "1.0.1";
   final String credits = "Noah Martino";
   final String license = "GNU GPL v3";
   
@@ -47,21 +49,25 @@ public static void main(String[] args){
     System.out.println("  -The base ingredient (almost always flour) MUST be in the first row in order for the program to work.");
     System.out.println("-------------------------");
     System.out.println("Column 2: Label: 'in-units' fill with list of units that correspond to each ingredient.");
-    System.out.println("  -Accepted input units are as follows 'lb, oz, gal, qt'");
+    System.out.println("  -Accepted input units are as follows 'lb, oz, gal, qt, gram'");
     System.out.println("-------------------------");
     System.out.println("Column 3: Label: 'values' fill with recipe numbers");
     System.out.println("-------------------------");
     System.out.println("Column 4: Label: 'out-unit'");
-    System.out.println("  -Accepted output units are as follows 'lb, oz'. There should be only one thing in this column at the top");
+    System.out.println("  -Accepted output units are as follows 'lb, oz, gram'. There should be only one thing in this column at the top");
 	System.out.println("-------------------------");
     System.out.println("Column 5: Label: 'out-size' One decimal or integer number that is the amount of base ingredient in oz or lbs we will scale to");
 	System.out.println("-------------------------");
+	System.exit(0);
     //System.out.println("Column 6: Optional: 'base-unit' must match one of the ingredients, we will default to the first row after the headers if you do not include this column.");
   }
-  else if(args[0].equalsIgnoreCase("about")){
-    System.out.println(name + " " + version);
+  else if(args[0].equalsIgnoreCase("about") || args[0].equalsIgnoreCase("version")){
+    System.out.println("-------------------------");
+	System.out.println(name + " v" + version);
     System.out.println("Credits: " + credits);
     System.out.println("License: " + license);
+    System.out.println("-------------------------");
+    System.exit(0);
   }
     BufferedReader csvReader = null;
 	try {

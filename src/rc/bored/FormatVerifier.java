@@ -7,7 +7,7 @@ public class FormatVerifier{
   public static boolean checkFormat(ArrayList<String[]> csvData){
 	  //List of valid headers
 	  List<String> validHeaders = Arrays.asList("ingredients", "in-units", "values", "out-unit", "out-size", "base-unit");
-	  List<String> validInUnits = Arrays.asList("lb", "oz", "gal", "qt");
+	  List<String> validInUnits = Arrays.asList("lb", "oz", "gal", "qt", "gram");
 	  //This boolean lets us print all error messages without returning.
 	  boolean isValid = true;
 	  //This checks if the first line (title) has a valid number of lines.
@@ -58,7 +58,7 @@ public class FormatVerifier{
 		  }
 	  }
 	  //Verify that out-unit is valid.
-	  if(csvData.get(1)[3].equalsIgnoreCase("lb") || csvData.get(1)[3].equalsIgnoreCase("oz")) {
+	  if(csvData.get(1)[3].equalsIgnoreCase("lb") || csvData.get(1)[3].equalsIgnoreCase("oz") || csvData.get(1)[3].equalsIgnoreCase("gram")) {
 		  //Do nothing
 	  }
 	  else {
