@@ -101,10 +101,10 @@ public class ConversionHelper {
 					values.set(i, lbsToOz(ozToGram(values.get(i))));
 					inUnits.set(i, gram);
 				}
-				diagPrint("Values and inUnits converted to gram", diagSwitch);
-				diagPrintArr("values: ",values,diagSwitch);
-				diagPrintArr("inUnits: ",inUnits,diagSwitch);
 			}
+			diagPrint("Values and inUnits converted to gram", diagSwitch);
+			diagPrintArr("values: ",values,diagSwitch);
+			diagPrintArr("inUnits: ",inUnits,diagSwitch);
 		}
 		//Handle the base ingredient stuff - This code has been disabled until further notice. There are shuffle issues.
 		/*
@@ -134,7 +134,7 @@ public class ConversionHelper {
 		//If there is no custom base ingredient, this is the default
 		baseIngredient = csvData.get(1)[0];
 		diagPrint("Base Ingredient: " + baseIngredient, diagSwitch); 
-		baseIngredientWeight = Double.parseDouble(csvData.get(1)[2]);
+		baseIngredientWeight = values.get(0);
 		diagPrint("Base Ingredient Weight: " + baseIngredientWeight + " " + outUnit, diagSwitch);
 		//Generate ratios
 		for(int i = 0; i < values.size(); i++) {

@@ -13,7 +13,7 @@ public class RecipeConverter{
 public static void main(String[] args){
   //Meta
   final String name = "Baking Recipe Converter";
-  final String version = "1.0.1";
+  final String version = "1.0.2";
   final String credits = "Noah Martino";
   final String license = "GNU GPL v3";
   
