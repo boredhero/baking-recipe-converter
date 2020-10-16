@@ -14,4 +14,4 @@ I doubt this will be of any use to anyone. My father was a chef/baker, and I hav
 
 ### Building
 * `chmod +x gradlew` & `./gradlew build`
-  * Artifacts will appear in /build/libs
+  * Artifacts will appear in `/build/libs`
